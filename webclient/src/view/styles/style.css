@@ -1,0 +1,30 @@
+.Body {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    min-height: 500px;
+}
+
+.pageHeader,
+.imageHeader,
+.textHeader {
+    text-align: center;
+}
+
+.spaceVertical {
+    height: 20px;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer i {
+    padding-left: 5px;
+}
+
+.copyright {
+    font-size: xx-small;
+    color: gray;
+}
