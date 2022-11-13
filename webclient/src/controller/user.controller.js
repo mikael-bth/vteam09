@@ -19,6 +19,25 @@ const userController = {
         }
         return answer;
     },
+    signup: async function signup(
+        name,
+        email,
+        password
+    ) {
+        let answer = "failed";
+        let userTemp = {
+            "name": name,
+            "password": password,
+            "email": email
+        };
+        let user = await userModel.getUserModel(userTemp);
+        let db = await database.saveToDb(user);
+        if (db === "success") {
+            answer = user;
+            return answer;
+        }
+        return answer;
+    },
 };
 
 module.exports = userController;
