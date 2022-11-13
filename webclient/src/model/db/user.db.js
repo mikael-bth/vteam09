@@ -17,24 +17,18 @@ const userDB = {
             //create new file if not exist
             fs.closeSync(fs.openSync('db.json', 'w'));
         }
-
         // read file
-        const file = fs.readFileSync('db.json')
-        const data = {
-            studentName: 'Joe',
-            address: 'abc'
-        }
-
+        const file = fs.readFileSync('db.json');
         //check if file is empty
         if (file.length == 0) {
             //add data to json file
-            fs.writeFileSync("db.json", JSON.stringify([data]))
+            fs.writeFileSync("db.json", JSON.stringify([data]));
         } else {
             //append data to jso file
-            const json = JSON.parse(file.toString())
+            const json = JSON.parse(file.toString());
             //add json element to json object
             json.push(data);
-            fs.writeFileSync("db.json", JSON.stringify(data))
+            fs.writeFileSync("db.json", JSON.stringify(data));
         }
     }
 };
