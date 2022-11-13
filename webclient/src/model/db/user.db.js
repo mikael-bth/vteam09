@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 const userDB = {
     georges: {
         "name": "Georges",
@@ -10,8 +12,8 @@ const userDB = {
         users.push(this.georges);
         return users;
     },
-    saveToDb: function saveToDb(data) {
-        const fs = require('fs')
+    saveToDb: async function saveToDb(data) {
+       
         //check if file exist
         if (!fs.existsSync('db.json')) {
             //create new file if not exist
@@ -30,6 +32,7 @@ const userDB = {
             json.push(data);
             fs.writeFileSync("db.json", JSON.stringify(data));
         }
+        return "success"
     }
 };
 

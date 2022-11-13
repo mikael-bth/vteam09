@@ -24,7 +24,20 @@ function SignUp() {
                 <div className="imageHeader">
                     <img alt="scooter" src="/assets/scooter.png" height={250} />
                 </div>
-                <Form>
+                <Form onSubmit={async (event) => {
+                    event.preventDefault();
+                    let answer = await userController.signup(email, password);
+
+                    if (answer === "failed") {
+                        console.log("Failed!");
+                    } else {
+                        userSession.removeSession();
+                        console.log(answer);
+                        userSession.setSession(answer.name);
+                        redirection();
+                        window.location.reload(false);
+                    }
+                }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter name" value={name} onChange={(event) => {setName(event.target.value)}}/>
