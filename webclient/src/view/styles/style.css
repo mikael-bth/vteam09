@@ -28,3 +28,12 @@
     font-size: xx-small;
     color: gray;
 }
+
+.formDiv {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.logoutBtn {
+    text-align: center;
+}
