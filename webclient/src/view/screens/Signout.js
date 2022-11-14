@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const userSession = require("../../controller/session.controller");
 
 
@@ -12,7 +12,7 @@ function SignOut() {
         if (userLogged) {
             setUser(userLogged);
         }
-    }, [userSession]);
+    }, []);
     const navigate = useNavigate();
     const redirection = () => {
         navigate('/')
@@ -20,7 +20,7 @@ function SignOut() {
     return (
         <div className='Body'>
             <div className="formDiv">
-                <h1 className="pageHeader">See you soon!</h1>
+                <h1 className="pageHeader">See you soon, {user}!</h1>
                 <div className="spaceVertical"></div>
                 <div className="imageHeader">
                     <img alt="scooter" src="/assets/scooter.png" height={250} />

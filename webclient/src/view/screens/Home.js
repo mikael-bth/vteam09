@@ -10,7 +10,7 @@ function Home() {
         if (userLogged) {
             setUser(userLogged);
         }
-    }, [userSession]);
+    }, []);
 
     return (
         <div className="Body">

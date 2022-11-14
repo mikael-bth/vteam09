@@ -14,7 +14,7 @@ function NavBar() {
       if (userLogged) {
           setUser(userLogged);
       }
-  }, [userSession]);
+  }, []);
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -34,7 +34,7 @@ function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             {user ? <div></div> : <Nav.Link href="/Login">Login</Nav.Link>}
             {user ? <NavDropdown title="Profile" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Info</NavDropdown.Item>
+              <NavDropdown.Item href="/info">Info</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Timelinne
               </NavDropdown.Item>

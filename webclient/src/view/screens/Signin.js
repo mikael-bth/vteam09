@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const userController = require("../../controller/user.controller");
 const userSession = require("../../controller/session.controller");
 
@@ -56,6 +56,10 @@ function Login() {
                         Submit
                     </Button>
                 </Form>
+                <div className="spaceVertical"></div>
+                <div className="spaceVertical"></div>
+                <div className="spaceVertical"></div>
+                <h6 className="textHeader">Don't have an account yet?<Link to="/signup"> Sign up</Link></h6>
             </div>
         </div>
     );
