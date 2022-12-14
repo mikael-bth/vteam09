@@ -9,6 +9,7 @@ const port = process.env.PORT || 1337;
 app.use(cors());
 
 const index = require('./routes/index');
+const v1 = require('./routes/v1');
 
 app.use((req, res, next) => {
     console.log(req.method);
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
+app.use('/v1', v1);
 
 // Catches errors and returns it to the user.
 app.use((req, res, next) => {
