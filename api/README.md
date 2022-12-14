@@ -17,15 +17,13 @@ Active routes:
 - / - Index page.
 - /v1 - Index page for v1 of API.\
 Following routes comes after the version route E.g. /v1/test.\
-Scooter API
------------
+<ins>Scooter API</ins>\
 - /scooters - Route to get, add, update and remove scooters. [GET, POST, PUT, REMOVE]
 - /scooter/id/:id - Route to get scooter with :id. [GET]
 - /activescooters - Route to get all active scooters. [GET]
 - /scooter/activate - Route to activate scooter. [PUT]
-- /scooter/deactivate - Route to deactivate scooter. [PUT]
-User API
---------
+- /scooter/deactivate - Route to deactivate scooter. [PUT]\
+<ins>User API</ins>\
 - /users - Route to get, add, update and remove users. [GET, POST, PUT, REMOVE]
 - /user/id/:id - Route to get user with :id. [GET]
 - /activeusers - Route to get all active users. [GET]
