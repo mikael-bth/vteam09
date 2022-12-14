@@ -15,9 +15,21 @@ Start the app with:
 
 Active routes:
 - / - Index page.
-- /v1 - Index page for v1 of API.
-  Following routes comes after the version route E.g. /v1/test.
-- /scooters - Route to get, add, update and remove scooters.
-- /scooter/:id - Route to get scooter with :id.
-- /scooter/activate - Route to activate scooter.
-- /scooter/deactivate - Route to deactivate scooter.
+- /v1 - Index page for v1 of API.\
+Following routes comes after the version route E.g. /v1/test.\
+Scooter API
+-----------
+- /scooters - Route to get, add, update and remove scooters. [GET, POST, PUT, REMOVE]
+- /scooter/id/:id - Route to get scooter with :id. [GET]
+- /activescooters - Route to get all active scooters. [GET]
+- /scooter/activate - Route to activate scooter. [PUT]
+- /scooter/deactivate - Route to deactivate scooter. [PUT]
+User API
+--------
+- /users - Route to get, add, update and remove users. [GET, POST, PUT, REMOVE]
+- /user/id/:id - Route to get user with :id. [GET]
+- /activeusers - Route to get all active users. [GET]
+- /user/ridehistory - Route to get ride history. [GET]
+- /user/lastride - Route to get last ride. [GET]
+- /user/addbalance - Route to add balance to user. [PUT]
+- /user/removebalance - Route to remove balance to user. [PUT]

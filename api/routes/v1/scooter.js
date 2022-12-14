@@ -4,15 +4,19 @@ const bodyParser = require('body-parser');
 
 router.use(bodyParser.json({ strict: false }));
 
-router.get('/:id',
+router.get('/scooter/id/:id',
     (req, res) => getScooter(req, res)
 );
 
-router.put('/activate',
+router.get('/activescooters',
+    (req, res) => getActiveScooters(req, res)
+);
+
+router.put('/scooter/activate',
     (req, res) => activateScooter(req, res)
 );
 
-router.put('/deactivate',
+router.put('/scooter/deactivate',
     (req, res) => deActivateScooter(req, res)
 );
 
@@ -21,6 +25,13 @@ function getScooter(request, response) {
     const data = {};
     return response.status(200).json(
         { data: data, msg: `Scooter with ID ${scooterID}`}
+    );
+}
+
+function getActiveScooters(request, response) {
+    const data = [];
+    return response.status(200).json(
+        { data: data, msg: "All active scooters in system"}
     );
 }
 
