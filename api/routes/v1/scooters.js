@@ -21,29 +21,29 @@ router.delete('/',
 );
 
 function getScooters(request, response) {
-    const data = []
+    const data = [];
     return response.status(200).json(
         { data: data, msg: "All scooters in system"}
     );
 }
 
 function addScooter(request, response) {
-    const data = "Scooter added to database"
-    return response.status(200).json(
+    const data = "Scooter added to database";
+    return response.status(201).json(
         { data: data, msg: "Scooter added to database"}
     );
 }
 
 function updateScooter(request, response) {
-    const data = "Scooter updated"
-    return response.status(200).json(
+    const data = "Scooter updated";
+    return response.status(201).json(
         { data: data, msg: "Scooter updated"}
     );
 }
 
 function removeScooter(request, response) {
-    const data = "Scooter removed"
-    return response.status(200).json(
+    const data = "Scooter removed";
+    return response.status(201).json(
         { data: data, msg: "Scooter removed"}
     );
 }

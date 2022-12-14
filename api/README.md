@@ -16,5 +16,8 @@ Start the app with:
 Active routes:
 - / - Index page.
 - /v1 - Index page for v1 of API.
-Following routes comes after the version route E.g. /v1/test
+  Following routes comes after the version route E.g. /v1/test.
 - /scooters - Route to get, add, update and remove scooters.
+- /scooter/:id - Route to get scooter with :id.
+- /scooter/activate - Route to activate scooter.
+- /scooter/deactivate - Route to deactivate scooter.
