@@ -80,7 +80,7 @@ scooter {
 - /scooter/activate - Route to activate scooter. [PUT]
 - /scooter/deactivate - Route to deactivate scooter. [PUT]\
 <ins>User API</ins>
-- /users - Route to get, add, update and remove users. [GET, POST, PUT, REMOVE]
+- /users - Route to get, add, update and remove users. [GET, POST, PUT, REMOVE]\
 GET returns list of user objects, Example of user object:
 <pre>
 user {
