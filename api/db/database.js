@@ -17,7 +17,6 @@ const database = {
             }
             console.log('Database connection closed.');
         });
-        return true;
     },
 
     query: function query(db, sql, params = []) {
@@ -25,6 +24,15 @@ const database = {
             db.all(sql, params, function(err, rows)  {
                 if(err) reject(err.message)
                 resolve(rows)
+            });
+        });
+    },
+
+    run: function run(db, sql, values) {
+        return new Promise(function(resolve, reject) {
+            db.run(sql, values, function(err)  {
+                if(err) reject(err.message)
+                resolve(this.changes)
             });
         });
     }

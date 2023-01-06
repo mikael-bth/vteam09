@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const database = require('./../../db/database');
+const dbSQL = require('./../../db/sql');
 
 router.use(bodyParser.json({ strict: false }));
 
@@ -20,29 +22,96 @@ router.delete('/',
     (req, res) => removeScooter(req, res)
 );
 
-function getScooters(request, response) {
-    const data = [];
+async function getScooters(request, response) {
+    let data;
+    let db;
+    try {
+        db = database.getDB();
+        data = await database.query(db, dbSQL.getScooters);
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(200).json(
         { data: data, msg: "All scooters in system"}
     );
 }
 
-function addScooter(request, response) {
-    const data = "Scooter added to database";
+async function addScooter(request, response) {
+    const newScooter = Object.values(request.body.scooter);
+    let data;
+    let db;
+    try {
+        db = database.getDB();
+        const result = await database.run(db, dbSQL.addScooter, newScooter);
+        data = `${result} scooter/s added to database.`;
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(201).json(
         { data: data, msg: "Scooter added to database"}
     );
 }
 
-function updateScooter(request, response) {
-    const data = "Scooter updated";
+async function updateScooter(request, response) {
+    const updatedScooter = Object.values(request.body.scooter);
+    updatedScooter.push(updatedScooter.shift());
+    let data;
+    let db;
+    try {
+        db = database.getDB();
+        const result = await database.run(db, dbSQL.updateScooter, updatedScooter);
+        data = `${result} scooters/s updated in database.`;
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(201).json(
         { data: data, msg: "Scooter updated"}
     );
 }
 
-function removeScooter(request, response) {
-    const data = "Scooter removed";
+async function removeScooter(request, response) {
+    const scooterID = Object.values(request.body.scooter)[0];
+    let data;
+    let db;
+    try {
+        db = database.getDB();
+        const result = await database.run(db, dbSQL.deleteScooter, scooterID);
+        data = `${result} scooter/s removed from database.`;
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(201).json(
         { data: data, msg: "Scooter removed"}
     );
