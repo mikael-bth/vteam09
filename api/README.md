@@ -46,6 +46,7 @@ scooter {
     zone: 0,
     lastUser: 0,
 }
+</pre>
 PUT requires a object with the name scooter with the variables in this order:
 <pre>
 scooter {
@@ -59,6 +60,7 @@ scooter {
     zone: 0,
     lastUser: 0,
 }
+</pre>
 DELETE requires a object with the name scooter with the scooter ID as first variable:
 <pre>
 scooter {
@@ -95,6 +97,7 @@ user {
     balance: 100,
     permission: false
 }
+</pre>
 PUT requires a object with the name user with the variables in this order:
 <pre>
 user {
@@ -103,6 +106,7 @@ user {
     balance: 100,
     permission: false
 }
+</pre>
 DELETE requires a object with the name user with the user ID as first variable:
 <pre>
 user {
