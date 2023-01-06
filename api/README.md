@@ -5,6 +5,7 @@ Modules:
 - CORS
 - DotENV
 - Express
+- Sqlite3
 
 Install all required modules with 'npm install'.
 
