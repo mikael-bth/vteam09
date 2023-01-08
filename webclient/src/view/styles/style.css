@@ -12,6 +12,10 @@
     text-align: center;
 }
 
+.imageHeader img {
+    width: 400px;
+}
+
 .spaceVertical {
     height: 20px;
 }

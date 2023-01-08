@@ -13,6 +13,7 @@ import Info from "./view/screens/ProfileInfo";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./view/styles/style.css";
 import "./view/styles/info.css";
+import Ride from "./view/screens/mobliescreen/ride";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <><NavBar /><BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/ride" element={<Ride />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />

@@ -17,7 +17,7 @@ function Home() {
             <h1 className="pageHeader">Friendly and sustainable</h1>
             <div className="spaceVertical"></div>
             <div className="imageHeader">
-                <img alt="logo" src="/assets/logo2.PNG" height={400} />
+                <img alt="logo" src="/assets/logo2.PNG" />
             </div>
             <div className="spaceVertical"></div>
             <div className="spaceVertical"></div>
