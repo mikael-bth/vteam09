@@ -22,6 +22,14 @@ router.put('/scooter/deactivate',
     (req, res) => deActivateScooter(req, res)
 );
 
+router.get('/scooter/position',
+    (req, res) => getScooterPosition(req, res)
+);
+
+router.put('/scooter/position',
+    (req, res) => setScooterPosition(req, res)
+);
+
 async function getScooter(request, response) {
     const scooterID = request.params.id;
     let data;
@@ -120,6 +128,57 @@ async function deActivateScooter(request, response) {
     }
     return response.status(201).json(
         { data: data, msg: "Scooter deactivated"}
+    );
+}
+
+async function getScooterPosition(request, response) {
+    const scooterID = request.body.id;
+    let data;
+    let db;
+
+    try {
+        db = database.getDB();
+        data = await database.query(db, dbSQL.getScooterPosition, [scooterID]);
+        data = data[0];
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
+    return response.status(200).json(
+        { data: data, msg: `Scooter ${scooterID}s position`}
+    );
+}
+
+async function setScooterPosition(request, response) {
+    const scooterID = request.body.id;
+    const position = request.body.position;
+    let data;
+    let db;
+
+    try {
+        db = database.getDB();
+        await database.run(db, dbSQL.setScooterPosition, [position, scooterID]);
+        data = `Scooter ${scooterID}s position set to ${position}`;
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
+    return response.status(200).json(
+        { data: data, msg: `Updated scooter ${scooterID}s position`}
     );
 }
 

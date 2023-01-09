@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const database = require('./../../db/database');
 const dbSQL = require('./../../db/sql');
 
@@ -8,6 +9,10 @@ router.use(bodyParser.json({ strict: false }));
 
 router.get('/user/id/:id',
     (req, res) => getUser(req, res)
+);
+
+router.post('/user/login',
+    (req, res) => loginUser(req, res)
 );
 
 router.get('/activeusers',
@@ -52,6 +57,44 @@ async function getUser(request, response) {
     return response.status(200).json(
         { data: data, msg: `User with ID ${userID}`}
     );
+}
+
+async function loginUser(request, response) {
+    const username = request.body.username;
+    const password = request.body.password;
+    let data;
+    let db;
+
+    try {
+        db = database.getDB();
+        const comparePass = await database.query(db, dbSQL.getUserPass, [username]);
+
+        if (comparePass.length === 0) {
+            return response.status(401).json(
+                { message: "User with that username not registered" }
+            );
+        }
+        bcrypt.compare(password, comparePass[0].password, function (err, res) {
+            if (!res) {
+                return response.status(401).json(
+                    { message: "Incorrect password" });
+            }
+            data = `${username} logged in`;
+            return response.status(200).json(
+                { data: data, msg: "User logged in"}
+            );
+        });
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
 }
 
 async function getActiveUsers(request, response) {

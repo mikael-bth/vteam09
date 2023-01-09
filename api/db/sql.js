@@ -37,6 +37,9 @@ const dbSQL = {
     getUser: `SELECT * FROM users
     WHERE
     id = ?;`,
+    getUserPass: `SELECT password FROM users
+    WHERE
+    username = ?;`,
     getActiveUser: `SELECT * FROM users
     WHERE
     active = TRUE;`,
@@ -70,6 +73,14 @@ const dbSQL = {
     UPDATE scooters
     SET
     active = FALSE
+    WHERE
+    id = ?;`,
+    getScooterPosition: `SELECT position from scooters
+    WHERE
+    id = ?;`,
+    setScooterPosition: `UPDATE scooters
+    SET
+    position = ?
     WHERE
     id = ?;`
 }

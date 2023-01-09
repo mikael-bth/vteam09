@@ -115,6 +115,20 @@ Requires scooterID, userID and payAmount in the body. Example:
     payAmount: 100
 }
 </pre>
+- /scooter/position - Route to get and set scooter position. [GET, PUT]\
+GET requires id in the body. Example:
+<pre>
+{
+    id: 1
+}
+</pre>
+PUT requires id and postion in the body. Example:
+<pre>
+{
+    id: 1,
+    position: "0.0"
+}
+</pre>
 <ins>User API</ins>
 - /users - Route to get, add, update and remove users. [GET, POST, PUT, REMOVE]\
 GET returns list of user objects, Example of user object:
@@ -162,6 +176,14 @@ Returns user object, Example of user object:
     balance: 100,
     permission: false,
     active: false
+}
+</pre>
+- /user/login - Route to login user. [POST]\
+Requires username and password in the body. Example:
+<pre>
+{
+    username: "EXAMPLE",
+    password: "PASSWORD"
 }
 </pre>
 - /activeusers - Route to get all active users. [GET]\
