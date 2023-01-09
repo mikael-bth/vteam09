@@ -1,8 +1,8 @@
-INSERT INTO users (name, balance, permission)
+INSERT INTO users (username, password, balance, permission, active)
 VALUES
-('Oscar', 100, TRUE),
-('Mo', 200, TRUE),
-('Gorge', 10, FALSE);
+('Oscar', 'password', 100, TRUE, FALSE),
+('Mo', 'password', 200, TRUE, FALSE),
+('Gorge', 'password', 10, FALSE, FALSE);
 
 INSERT INTO scooters (battery, position, live, pickup, active, service, zone, lastUser)
 VALUES

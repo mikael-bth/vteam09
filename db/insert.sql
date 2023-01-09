@@ -1,15 +1,19 @@
 DROP table IF EXISTS users;
 
 -- id: Unique id for the user
--- name: The name of the user
+-- username: The username of the user
+-- password: The password of the user
 -- balance: The balance of the user account
 -- permission: IF user has the specified permission to use scooters
+-- active: IF user is currently using scooter
 
 CREATE TABLE users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     balance INTEGER NOT NULL,
-    permission BOOLEAN NOT NULL
+    permission BOOLEAN NOT NULL,
+    active BOOLEAN NOT NULL
 );
 
 DROP table IF EXISTS scooters;
