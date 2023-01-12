@@ -5,6 +5,20 @@ import { useNavigate, Link } from "react-router-dom";
 const userController = require("../../controller/user.controller");
 const userSession = require("../../controller/session.controller");
 
+async function signInUser(name, password) {
+    const response = await fetch("/v1/user/login", {
+        method: "POST",
+        headers: { "content-type": "application/json", },
+        body: JSON.stringify({
+            username: name,
+            password: password,
+            //email: email,
+        }),
+    });
+    const data = await response.json();
+}
+
+
 function Login() {
 
     const [email, setEmail] = useState("");
@@ -26,7 +40,8 @@ function Login() {
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
                     let answer = await userController.login(email, password);
-
+                    let data = await signInUser(email, password);
+                    console.log(data);
                     if (answer === "failed") {
                         console.log("Failed!");
                     } else {
@@ -38,10 +53,10 @@ function Login() {
                     }
                 }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={email} onChange={(event) => {setEmail(event.target.value)}} />
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" value={email} onChange={(event) => {setEmail(event.target.value)}} />
                         <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
+                            We'll never share your data with anyone else.
                         </Form.Text>
                     </Form.Group>
 

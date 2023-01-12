@@ -5,6 +5,18 @@ import { useNavigate, Link } from "react-router-dom";
 const userController = require("../../controller/user.controller");
 const userSession = require("../../controller/session.controller");
 
+async function addNewUser(name, password) {
+    const response = await fetch("/v1/users", {
+        method: "POST",
+        headers: { "content-type": "application/json", },
+        body: JSON.stringify({
+            username: name,
+            password: password,
+            //email: email,
+        }),
+    });
+    const data = await response.json();
+}
 
 function SignUp() {
     const [name, setName] = useState("");
@@ -26,7 +38,9 @@ function SignUp() {
                 </div>
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
-                    let answer = await userController.signup(name, email, password);
+                    let answer = await userController.signup(name, email, password); // Chaching
+                    
+                    await addNewUser(name, password) // Save into DB
 
                     if (answer === "failed") {
                         console.log("Failed!");
@@ -39,10 +53,10 @@ function SignUp() {
                     }
                 }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" value={name} onChange={(event) => { setName(event.target.value) }} />
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" value={name} onChange={(event) => { setName(event.target.value) }} />
                         <Form.Text className="text-muted">
-                            Name should be minimum 2 characters.
+                            Username should be minimum 2 characters.
                         </Form.Text>
                     </Form.Group>
 
