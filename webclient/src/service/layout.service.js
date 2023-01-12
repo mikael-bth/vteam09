@@ -1,4 +1,3 @@
-import { isMobile } from 'react-device-detect';
 import MobileSerice from './mobile.service';
 import WebService from './web.service';
 import React, { useEffect, useState } from "react";
