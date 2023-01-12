@@ -25,6 +25,7 @@ router.delete('/',
 async function getScooters(request, response) {
     let data;
     let db;
+
     try {
         db = database.getDB();
         data = await database.query(db, dbSQL.getScooters);
@@ -45,9 +46,12 @@ async function getScooters(request, response) {
 }
 
 async function addScooter(request, response) {
-    const newScooter = Object.values(request.body.scooter);
+    const newScooter = [request.body.battery, request.body.position,
+        request.body.live, request.body.pickup, request.body.active,
+        request.body.service, request.body.zone, request.body.lastUser];
     let data;
     let db;
+
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.addScooter, newScooter);
@@ -69,10 +73,13 @@ async function addScooter(request, response) {
 }
 
 async function updateScooter(request, response) {
-    const updatedScooter = Object.values(request.body.scooter);
-    updatedScooter.push(updatedScooter.shift());
+    const updatedScooter = [request.body.battery, request.body.position,
+        request.body.live, request.body.pickup, request.body.active,
+        request.body.service, request.body.zone, request.body.lastUser,
+        request.body.id];
     let data;
     let db;
+
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.updateScooter, updatedScooter);
@@ -94,9 +101,10 @@ async function updateScooter(request, response) {
 }
 
 async function removeScooter(request, response) {
-    const scooterID = Object.values(request.body.scooter)[0];
+    const scooterID = request.body.id;
     let data;
     let db;
+    
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.deleteScooter, scooterID);

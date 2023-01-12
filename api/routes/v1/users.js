@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const database = require('./../../db/database');
 const dbSQL = require('./../../db/sql');
 
@@ -25,9 +26,10 @@ router.delete('/',
 async function getUsers(request, response) {
     let data;
     let db;
+    
     try {
         db = database.getDB();
-        data = await database.query(db, dbSQL.getUsers)
+        data = await database.query(db, dbSQL.getUsers);
     } catch (e) {
         return response.status(500).json({
             errors: {
@@ -45,9 +47,11 @@ async function getUsers(request, response) {
 }
 
 async function addUser(request, response) {
-    const newUser = Object.values(request.body.user);
+    const password = await bcrypt.hash(request.body.password, 10);
+    const newUser = [request.body.username, password, 0, false, false];
     let data;
     let db;
+
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.addUser, newUser);
@@ -69,10 +73,12 @@ async function addUser(request, response) {
 }
 
 async function updateUser(request, response) {
-    const updatedUser = Object.values(request.body.user);
-    updatedUser.push(updatedUser.shift());
+    const updatedUser = [request.body.username, request.body.password,
+        request.body.balance, request.body.permission, request.body.active,
+        request.body.id];
     let data;
     let db;
+
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.updateUser, updatedUser);
@@ -94,9 +100,10 @@ async function updateUser(request, response) {
 }
 
 async function removeUser(request, response) {
-    const userID = Object.values(request.body.user)[0];
+    const userID = request.body.id;
     let data;
     let db;
+
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.deleteUser, userID);
