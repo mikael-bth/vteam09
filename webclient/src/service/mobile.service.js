@@ -43,8 +43,8 @@ function MobileService() {
                             {user ? <Nav.Link href="/ride">Ride</Nav.Link> : <div></div>}
                             {user ? <div></div> : <Nav.Link href="/Login">Login</Nav.Link>}
                             {user ? <NavDropdown title="Services" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action4">
-                                    New Scooter
+                                <NavDropdown.Item href="/scooters">
+                                    Available scooters
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="#action5">
                                     Your scooters

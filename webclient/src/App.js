@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./view/styles/style.css";
 import "./view/styles/info.css";
 import Ride from "./view/screens/mobliescreen/ride";
+import Scooters from "./view/screens/mobliescreen/scooters";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/scooters" element={<Scooters />} />
       </Routes>
     </BrowserRouter><Footer/></>
   );
