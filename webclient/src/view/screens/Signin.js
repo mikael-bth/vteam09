@@ -16,6 +16,7 @@ async function signInUser(name, password) {
         }),
     });
     const data = await response.json();
+    return data;
 }
 
 
@@ -39,17 +40,24 @@ function Login() {
                 </div>
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
-                    let answer = await userController.login(email, password);
+                    let answerTest = await userController.loginTest(email, password);
                     let data = await signInUser(email, password);
-                    console.log(data);
-                    if (answer === "failed") {
-                        console.log("Failed!");
-                    } else {
+                    
+                    if (data.data === email+" logged in") {
                         userSession.removeSession();
-                        console.log(answer);
-                        userSession.setSession(answer.name);
+                        console.log(data.data);
+                        userSession.setSession(email);
                         redirection();
                         window.location.reload(false);
+                    }
+                    else if (answerTest != "failed") {
+                        userSession.removeSession();
+                        console.log(answerTest);
+                        userSession.setSession(answerTest.name);
+                        redirection();
+                        window.location.reload(false);
+                    } else {
+                        console.log("Failed!");
                     }
                 }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">

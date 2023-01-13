@@ -20,7 +20,7 @@ async function addNewUser(name, password) {
 
 function SignUp() {
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    //const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
@@ -38,8 +38,8 @@ function SignUp() {
                 </div>
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
-                    let answer = await userController.signup(name, email, password); // Chaching
-                    
+                    let answer = await userController.log(name, "test@test.com", password); // Chaching
+
                     await addNewUser(name, password) // Save into DB
 
                     if (answer === "failed") {
@@ -60,13 +60,13 @@ function SignUp() {
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    {/*<Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" value={email} onChange={(event) => { setEmail(event.target.value) }} />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
-                    </Form.Group>
+                    </Form.Group>*/}
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>

@@ -16,7 +16,7 @@ module.exports = function(app) {
     })
   );
   app.use(
-    '/v1/user',
+    '/v1/user/login',
     createProxyMiddleware({
       target: 'http://localhost:1337',
       changeOrigin: true,

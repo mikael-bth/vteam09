@@ -2,7 +2,7 @@ const database = require("../model/db/user.db");
 const userModel = require("../model/user.model");
 
 const userController = {
-    login: async function login(
+    loginTest: async function loginTest(
         email,
         password
     ) {
@@ -19,7 +19,7 @@ const userController = {
         }
         return answer;
     },
-    signup: async function signup(
+    log: async function log(
         name,
         email,
         password
