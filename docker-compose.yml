@@ -1,0 +1,15 @@
+version: "3"
+networks:
+    vteam_09:
+services:
+    server:
+        image: mikael1109/scooter_api:latest
+        container_name: "scooter_api"
+        ports:
+            - "8080:1337"
+        networks:
+            vteam_09:
+        restart:
+            "always"
+        volumes:
+            - "./db/vteam.sqlite:/db/vteam.sqlite"

@@ -8,7 +8,7 @@
     "development": "nodemon app.js",
     "production": "NODE_ENV='production' node app.js"
   },
-  "author": "",
+  "author": "Mikael Menonen",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
