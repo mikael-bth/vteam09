@@ -11,7 +11,9 @@ function Info() {
     useEffect(() => {
         let userLogged = userSession.getSession();
         if (userLogged) {
-            setUser(userLogged);
+            fetch("/v1/user/id/" + userLogged)
+                .then((res) => res.json())
+                .then((data) => setUser(data.data[0]));
         }
     }, []);
     const navigate = useNavigate();
@@ -32,15 +34,14 @@ function Info() {
                                         </div>
                                         <div class="col-lg-6 px-xl-10">
                                             <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                                <h3 class="h2 text-white mb-0">{user}</h3>
+                                                <h3 class="h2 text-white mb-0">{user.username}</h3>
                                                 <span class="text-primary">User</span>
                                             </div>
                                             <ul class="list-unstyled mb-1-9">
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> edith@mail.com</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">City:</span>Gothenburg</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Address:</span>Berguven 20</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Website:</span> www.example.com</li>
-                                                <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span> 507 - 541 - 4567</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Balance:</span>{user.balance}</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Permission:</span>{user.permission}</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Active:</span>{user.active}</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Joined:</span> www.example.com</li>
                                             </ul>
                                             <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                                                 <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
@@ -53,7 +54,7 @@ function Info() {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </section>

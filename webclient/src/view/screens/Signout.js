@@ -10,7 +10,9 @@ function SignOut() {
     useEffect(() => {
         let userLogged = userSession.getSession();
         if (userLogged) {
-            setUser(userLogged);
+            fetch("/v1/user/id/" + userLogged)
+                .then((res) => res.json())
+                .then((data) => setUser(data.data[0]));
         }
     }, []);
     const navigate = useNavigate();
@@ -20,7 +22,7 @@ function SignOut() {
     return (
         <div className='Body'>
             <div className="formDiv">
-                <h1 className="pageHeader">See you soon, {user}!</h1>
+                <h1 className="pageHeader">See you soon, {user.username}!</h1>
                 <div className="spaceVertical"></div>
                 <div className="imageHeader">
                     <img alt="scooter" src="/assets/scooter.png" height={250} />

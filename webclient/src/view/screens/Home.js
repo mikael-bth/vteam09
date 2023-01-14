@@ -8,7 +8,9 @@ function Home() {
     useEffect(() => {
         let userLogged = userSession.getSession();
         if (userLogged) {
-            setUser(userLogged);
+            fetch("/v1/user/id/"+userLogged)
+                .then((res) => res.json())
+                .then((data) => setUser(data.data[0]));
         }
     }, []);
 
@@ -23,7 +25,7 @@ function Home() {
             <div className="spaceVertical"></div>
             <div className="spaceVertical"></div>
             {user ?
-                <h6 className="textHeader">Welcome {user}</h6>
+                <h6 className="textHeader">Welcome {user.username}</h6>
                 : <h6 className="textHeader"><Link to="/login">Sign in</Link> or <Link to="/signup">Join now</Link></h6>}
         </div>
     );
