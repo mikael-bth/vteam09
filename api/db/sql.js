@@ -51,12 +51,12 @@ const dbSQL = {
     active = TRUE;`,
     addUserBalance: `UPDATE users
     SET
-    balance += ?
+    balance = balance + ?
     WHERE
     id = ?;`,
     removeUserBalance: `UPDATE users
     SET
-    balance -= ?
+    balance = balance - ?
     WHERE
     id = ?;`,
     activateScooter: `UPDATE scooters
@@ -65,12 +65,7 @@ const dbSQL = {
     lastUser = ?
     WHERE
     id = ?;`,
-    deActivateScooter: `UPDATE users
-    SET
-    balance -= ?
-    WHERE
-    id = ?;
-    UPDATE scooters
+    deActivateScooter: `UPDATE scooters
     SET
     active = FALSE
     WHERE

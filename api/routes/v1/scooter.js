@@ -85,6 +85,31 @@ async function activateScooter(request, response) {
 
     try {
         db = database.getDB();
+
+        let scooter = await database.query(db, dbSQL.getScooter, [scooterID]);
+        scooter = scooter[0]
+        if (scooter.battery <= 20) {
+            return response.status(401).json(
+                { message: "Scooter battery low" }
+            );
+        } else if (scooter.live === 0) {
+            return response.status(401).json(
+                { message: "Scooter is not live" }
+            );
+        } else if (scooter.pickup === 1) {
+            return response.status(401).json(
+                { message: "Scooter is waiting for pickup" }
+            );
+        } else if (scooter.active === 1) {
+            return response.status(401).json(
+                { message: "Scooter already in use" }
+            );
+        } else if (scooter.service === 1) {
+            return response.status(401).json(
+                { message: "Scooter is waiting for service" }
+            );
+        }
+
         await database.run(db, dbSQL.activateScooter, [userID, scooterID]);
         data = `User ${userID} activated scooter ${scooterID}`;
     } catch (e) {
@@ -112,8 +137,8 @@ async function deActivateScooter(request, response) {
 
     try {
         db = database.getDB();
-        await database.run(db, dbSQL.deActivateScooter,
-            [payAmount, userID, scooterID]);
+        await database.run(db, dbSQL.removeUserBalance, [payAmount, userID]);
+        await database.run(db, dbSQL.deActivateScooter, [scooterID]);
         data = `User ${userID} deactivated scooter ${scooterID} and payed ${payAmount}`;
     } catch (e) {
         return response.status(500).json({

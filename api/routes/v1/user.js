@@ -77,7 +77,8 @@ async function loginUser(request, response) {
         bcrypt.compare(password, comparePass[0].password, function (err, res) {
             if (!res) {
                 return response.status(401).json(
-                    { message: "Incorrect password" });
+                    { message: "Incorrect password" }
+                );
             }
             data = `${username} logged in`;
             return response.status(200).json(
