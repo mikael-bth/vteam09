@@ -68,6 +68,7 @@ async function loginUser(request, response) {
     try {
         db = database.getDB();
         const comparePass = await database.query(db, dbSQL.getUserPass, [username]);
+        const userId = await database.query(db, dbSQL.getUserIdByUsername, [username]); // Get user Id
 
         if (comparePass.length === 0) {
             return response.status(401).json(
@@ -82,7 +83,7 @@ async function loginUser(request, response) {
             }
             data = `${username} logged in`;
             return response.status(200).json(
-                { data: data, msg: "User logged in"}
+                { data: data, msg: "User logged in", id: userId[0].id}
             );
         });
     } catch (e) {

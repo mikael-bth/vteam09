@@ -16,6 +16,7 @@ async function addNewUser(name, password) {
         }),
     });
     const data = await response.json();
+    console.log(data);
 }
 
 function SignUp() {

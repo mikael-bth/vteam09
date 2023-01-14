@@ -42,15 +42,16 @@ function Login() {
                     event.preventDefault();
                     let answerTest = await userController.loginTest(email, password);
                     let data = await signInUser(email, password);
-                    
+                     
                     if (data.data === email+" logged in") {
                         userSession.removeSession();
                         console.log(data.data);
-                        userSession.setSession(email);
+                        console.log(data.id);
+                        userSession.setSession(data.id);
                         redirection();
                         window.location.reload(false);
                     }
-                    else if (answerTest != "failed") {
+                    else if (answerTest !== "failed") {
                         userSession.removeSession();
                         console.log(answerTest);
                         userSession.setSession(answerTest.name);

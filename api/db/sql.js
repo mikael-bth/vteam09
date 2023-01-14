@@ -37,6 +37,9 @@ const dbSQL = {
     getUser: `SELECT * FROM users
     WHERE
     id = ?;`,
+    getUserIdByUsername: `SELECT id FROM users
+    WHERE
+    username = ?;`,
     getUserPass: `SELECT password FROM users
     WHERE
     username = ?;`,
