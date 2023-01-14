@@ -48,14 +48,15 @@ async function getUsers(request, response) {
 
 async function addUser(request, response) {
     const password = await bcrypt.hash(request.body.password, 10);
-    const newUser = [request.body.username, password, 0, false, false];
+    const newUser = [request.body.username, password, 0, false, false, new Date().toUTCString()];
     let data;
     let db;
-
+    let userId;
     try {
         db = database.getDB();
         const result = await database.run(db, dbSQL.addUser, newUser);
         data = `${result} user/s added to database.`;
+        userId = await database.query(db, dbSQL.getUserIdByUsername, [request.body.username]); // Get user Id
     } catch (e) {
         return response.status(500).json({
             errors: {
@@ -68,7 +69,7 @@ async function addUser(request, response) {
         database.closeDB(db);
     }
     return response.status(201).json(
-        { data: data, msg: "User added to database"}
+        { data: data, msg: "User added to database", id: userId[0].id}
     );
 }
 

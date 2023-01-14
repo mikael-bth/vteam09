@@ -16,7 +16,7 @@ async function addNewUser(name, password) {
         }),
     });
     const data = await response.json();
-    console.log(data);
+    return data;
 }
 
 function SignUp() {
@@ -39,18 +39,16 @@ function SignUp() {
                 </div>
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
-                    let answer = await userController.log(name, "test@test.com", password); // Chaching
-
-                    await addNewUser(name, password) // Save into DB
-
-                    if (answer === "failed") {
-                        console.log("Failed!");
-                    } else {
+                    let data = await addNewUser(name, password); // Save into DB
+                    console.log(data.data);
+                    if (data.data === "1 user/s added to database.") {
                         userSession.removeSession();
-                        console.log(answer);
-                        userSession.setSession(answer.name);
+                        console.log(name);
+                        userSession.setSession(data.id);
                         redirection();
                         window.location.reload(false);
+                    } else {
+                        console.log("Failed!");
                     }
                 }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">

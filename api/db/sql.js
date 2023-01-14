@@ -1,9 +1,9 @@
 const dbSQL = {
     getUsers: 'SELECT * FROM users;',
     getScooters: 'SELECT * FROM scooters;',
-    addUser: `INSERT INTO users (username, password, balance, permission, active)
+    addUser: `INSERT INTO users (username, password, balance, permission, active, joined)
     VALUES
-    (?, ?, ?, ?, ?);`,
+    (?, ?, ?, ?, ?, ?);`,
     addScooter: `INSERT INTO scooters (battery, position, live, pickup, active, service, zone, lastUser)
     VALUES
     (?, ?, ?, ?, ?, ?, ?, ?)`,

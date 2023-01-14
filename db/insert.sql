@@ -13,7 +13,8 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     balance INTEGER NOT NULL,
     permission BOOLEAN NOT NULL,
-    active BOOLEAN NOT NULL
+    active BOOLEAN NOT NULL,
+    joined VARCHAR(255) NOT NULL
 );
 
 DROP table IF EXISTS scooters;

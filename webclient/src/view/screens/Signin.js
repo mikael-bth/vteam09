@@ -26,7 +26,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-    const  redirection = () =>{
+    const redirection = () => {
         navigate('/')
     }
 
@@ -40,21 +40,13 @@ function Login() {
                 </div>
                 <Form onSubmit={async (event) => {
                     event.preventDefault();
-                    let answerTest = await userController.loginTest(email, password);
                     let data = await signInUser(email, password);
-                     
-                    if (data.data === email+" logged in") {
+
+                    if (data.data === email + " logged in") {
                         userSession.removeSession();
                         console.log(data.data);
                         console.log(data.id);
                         userSession.setSession(data.id);
-                        redirection();
-                        window.location.reload(false);
-                    }
-                    else if (answerTest !== "failed") {
-                        userSession.removeSession();
-                        console.log(answerTest);
-                        userSession.setSession(answerTest.name);
                         redirection();
                         window.location.reload(false);
                     } else {
@@ -63,7 +55,7 @@ function Login() {
                 }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter username" value={email} onChange={(event) => {setEmail(event.target.value)}} />
+                        <Form.Control type="text" placeholder="Enter username" value={email} onChange={(event) => { setEmail(event.target.value) }} />
                         <Form.Text className="text-muted">
                             We'll never share your data with anyone else.
                         </Form.Text>
@@ -71,7 +63,7 @@ function Login() {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => {setPassword(event.target.value)}}/>
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => { setPassword(event.target.value) }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Show password" />

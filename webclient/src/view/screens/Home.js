@@ -8,7 +8,7 @@ function Home() {
     useEffect(() => {
         let userLogged = userSession.getSession();
         if (userLogged) {
-            fetch("/v1/user/id/"+userLogged)
+            fetch("/v1/user/id/" + userLogged)
                 .then((res) => res.json())
                 .then((data) => setUser(data.data[0]));
         }
@@ -16,7 +16,9 @@ function Home() {
 
     return (
         <div className="Body">
-            <h1 className="pageHeader">Friendly and sustainable</h1>
+            {user ?
+                <h1 className="pageHeader">Welcome {user.username}!</h1>
+                : <h1 className="textHeader">Friendly and sustainable</h1>}
             <div className="spaceVertical"></div>
             <div className="imageHeader">
                 <img alt="logo" src="/assets/logo2.PNG" />
@@ -25,7 +27,7 @@ function Home() {
             <div className="spaceVertical"></div>
             <div className="spaceVertical"></div>
             {user ?
-                <h6 className="textHeader">Welcome {user.username}</h6>
+                <h3 className="textHeader">Friendly and sustainable</h3>
                 : <h6 className="textHeader"><Link to="/login">Sign in</Link> or <Link to="/signup">Join now</Link></h6>}
         </div>
     );
