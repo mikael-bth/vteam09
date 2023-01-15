@@ -1,0 +1,40 @@
+/*  Table */
+table {
+    width:100%;
+    border-radius: 15px 15px 0 0;
+}
+
+thead {
+    border-radius: 30px 30px 0 0;
+    display:flex;
+    width:100%;
+    background:#000;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+tr {
+    display:flex;
+    width:100%;
+    padding: 10px;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: #EEEEEE;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: white;
+}
+
+tbody a{
+    color: black;
+    text-decoration: underline;
+}
+
+td {
+    flex: 1 1 20%;
+    text-align:center;
+}

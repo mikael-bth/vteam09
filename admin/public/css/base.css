@@ -1,0 +1,144 @@
+html {
+  box-sizing: border-box;   /* Alternate box model */
+  background: url(../img/grid-square-20.png) repeat;  /* Show background grid image */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;      /* Alternate box model */
+}
+
+body {
+    overflow-y: scroll;     /* Always display scrollbar, no hopping pages */
+    font-size: 18px;
+    margin: 8px auto;
+    max-width: 1200px;
+    font-family: Georgia, serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.row {
+    display: flex;
+    gap: 24px;
+    background-color: RGB(146, 168, 209);
+    margin-bottom: 24px;
+    border-radius: 25px;
+}
+
+.row-main{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    border-radius: 25px;
+}
+
+.siteheader {
+    color: black;
+    text-align: center;
+    padding-left: 50px;
+    font-family: monospace;
+    font-style: italic;
+    text-decoration: underline black;
+    background-color: RGB(146, 168, 209);
+    min-height: 60px;
+    min-width: 100%;
+    font-size: 30px;
+    border-radius: 25px;
+}
+
+.navbar {
+    text-align: center;
+    background-color: #34495e;
+    margin-bottom: 24px;
+    padding: 0.5em;
+    font-family: 'Yellowtail', cursive;
+    border-radius: 8px;
+}
+
+.navbar a {
+    display: inline-block;
+	line-height: 50px;
+	font-size: 15px;
+	z-index: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+    width: 110px;
+}
+
+.navbar a:hover {
+    background-color: #3498db;
+    text-decoration: underline;
+}
+
+.navbar a.selected {
+    background-color:#1abc9c;
+}
+
+/* Aside links */
+.aside a {
+    display: inline-block;
+    padding: 0.5em;
+    background-color: RGB(146, 168, 209);
+    color: black;
+    text-decoration: none;
+}
+
+.aside a:hover {
+    text-decoration: underline;
+}
+
+.aside a.selected {
+    color: #34568B;
+}
+
+.main {
+    background-color: white;
+    width: calc(100% / 3 * 2);
+    min-height: 10em;
+    padding: 0 1em;
+    border-radius: 0px 25px 25px 0px;
+}
+
+.aside {
+    padding: 1em;
+    background-color: RGB(146, 168, 209);
+    width: calc(100% / 3 * 1);
+    border-radius: 25px 0px 0px 25px;
+}
+
+pre {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 0.5em;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: pre-line;
+}
+
+.sitefooter {
+    padding-left: 50px;
+    font-family: monospace;
+    text-decoration: underline black;
+    text-align: center;
+    background-color: RGB(146, 168, 209);
+    min-height: 100px;
+    min-width: 100%;
+    border-radius: 25px;
+}
+
+@media only screen and (min-width: 1200px) {
+    textarea{
+        width: 700px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    textarea{
+        width: 300px;
+    }
+}
