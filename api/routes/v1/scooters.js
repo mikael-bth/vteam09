@@ -47,8 +47,8 @@ async function getScooters(request, response) {
 
 async function addScooter(request, response) {
     const newScooter = [request.body.battery, request.body.position,
-        request.body.live, request.body.pickup, request.body.active,
-        request.body.service, request.body.zone, request.body.lastUser];
+        request.body.live, request.body.active, request.body.service,
+        request.body.zone, request.body.lastUser];
     let data;
     let db;
 
@@ -74,9 +74,8 @@ async function addScooter(request, response) {
 
 async function updateScooter(request, response) {
     const updatedScooter = [request.body.battery, request.body.position,
-        request.body.live, request.body.pickup, request.body.active,
-        request.body.service, request.body.zone, request.body.lastUser,
-        request.body.id];
+        request.body.live, request.body.active, request.body.service,
+        request.body.zone, request.body.lastUser, request.body.id];
     let data;
     let db;
 

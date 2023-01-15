@@ -4,7 +4,7 @@ const dbSQL = {
     addUser: `INSERT INTO users (username, password, balance, permission, active, joined)
     VALUES
     (?, ?, ?, ?, ?, ?);`,
-    addScooter: `INSERT INTO scooters (battery, position, live, pickup, active, service, zone, lastUser)
+    addScooter: `INSERT INTO scooters (battery, position, live, active, service, zone, lastUser)
     VALUES
     (?, ?, ?, ?, ?, ?, ?, ?)`,
     updateUser: `UPDATE users
@@ -21,7 +21,6 @@ const dbSQL = {
     battery = ?,
     position = ?,
     live = ?,
-    pickup = ?,
     active = ?,
     service = ?,
     zone = ?,

@@ -96,10 +96,6 @@ async function activateScooter(request, response) {
             return response.status(401).json(
                 { message: "Scooter is not live" }
             );
-        } else if (scooter.pickup === 1) {
-            return response.status(401).json(
-                { message: "Scooter is waiting for pickup" }
-            );
         } else if (scooter.active === 1) {
             return response.status(401).json(
                 { message: "Scooter already in use" }

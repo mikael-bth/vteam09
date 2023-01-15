@@ -34,7 +34,6 @@ CREATE TABLE scooters(
     battery INTEGER NOT NULL,
     position VARCHAR(255) NOT NULL,
     live BOOLEAN NOT NULL,
-    pickup BOOLEAN NOT NULL,
     active BOOLEAN NOT NULL,
     service BOOLEAN NOT NULL,
     zone INTEGER,
