@@ -1,0 +1,12 @@
+2022-12-13
+Strukturen av databasen skapad är testad genom terminal tillsammans med sql scripten och fungerade väll.
+Haft problem med att lära mig hur man gör effektiva funktioner och fått det att fungera.
+Har gjort en simpel funktion men har fick inte den att fungera så nästa gång jag sitter med databasen så ska jag titta över funktionen och se till att den fungera
+för att då en grundlig förståelse för funktionernas syntax. / Oscar (osay21)
+
+2022-12-14
+Jag lärde mig idag att sqlite inte har en support för att sparad funktion som jag har försökt att få till att fungera.
+För att kunna få som skrevs i SDS:en så kommer jag behöva byta programmeringsspråk till sql för att de har funktionen att spara funktioner
+på ett liknande sätt som databaserna. Men det blir nog bättre att behålla inom sqlite eftersom det är vad mina gruppmedlemmar var blivit
+infomerade jag ska lösa databasen. Inga besult har blivit besluta ska försöka att få ett möte med gruppmedlemmar som bli påvärkade
+för att se deras synpunkt. / Oscar (osay21)
