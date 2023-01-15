@@ -134,7 +134,8 @@ GET returns list of user objects, Example of user object:
     password: "PASSWORD"
     balance: 100,
     permission: false,
-    active: false
+    active: false,
+    joined: "1 jan 2023"
 }
 </pre>
 POST requires username and password in the body. Example:
@@ -170,7 +171,8 @@ Returns user object, Example of user object:
     password: "PASSWORD"
     balance: 100,
     permission: false,
-    active: false
+    active: false,
+    joined: "1 jan 2023"
 }
 </pre>
 - /user/login - Route to login user. [POST]\
@@ -190,7 +192,8 @@ Returns list of user objects, Example of user object:
     password: "PASSWORD"
     balance: 100,
     permission: false,
-    active: false
+    active: true,
+    joined: "1 jan 2023"
 }
 </pre>
 - /user/ridehistory - Route to get ride history. [GET]

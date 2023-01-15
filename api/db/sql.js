@@ -69,7 +69,17 @@ const dbSQL = {
     lastUser = ?
     WHERE
     id = ?;`,
+    activateUser: `UPDATE users
+    SET
+    active = TRUE
+    WHERE
+    id = ?;`,
     deActivateScooter: `UPDATE scooters
+    SET
+    active = FALSE
+    WHERE
+    id = ?;`,
+    deActivateUser: `UPDATE users
     SET
     active = FALSE
     WHERE

@@ -74,9 +74,9 @@ async function addUser(request, response) {
 }
 
 async function updateUser(request, response) {
-    const updatedUser = [request.body.username, request.body.password,
-        request.body.balance, request.body.permission, request.body.active,
-        request.body.id];
+    const password = await bcrypt.hash(request.body.password, 10);
+    const updatedUser = [request.body.username, password, request.body.balance,
+        request.body.permission, request.body.active, request.body.id];
     let data;
     let db;
 

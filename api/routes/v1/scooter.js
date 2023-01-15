@@ -107,6 +107,7 @@ async function activateScooter(request, response) {
         }
 
         await database.run(db, dbSQL.activateScooter, [userID, scooterID]);
+        await database.run(db, dbSQL.activateUser, [userID]);
         data = `User ${userID} activated scooter ${scooterID}`;
     } catch (e) {
         return response.status(500).json({
@@ -137,6 +138,7 @@ async function deActivateScooter(request, response) {
             [userID, scooterID, payAmount])
         await database.run(db, dbSQL.removeUserBalance, [payAmount, userID]);
         await database.run(db, dbSQL.deActivateScooter, [scooterID]);
+        await database.run(db, dbSQL.deActivateUser, [userID]);
         data = `User ${userID} deactivated scooter ${scooterID} and payed ${payAmount}`;
     } catch (e) {
         return response.status(500).json({
