@@ -1,10 +1,12 @@
 const dbSQL = {
     getUsers: 'SELECT * FROM users;',
     getScooters: 'SELECT * FROM scooters;',
-    addUser: `INSERT INTO users (username, password, balance, permission, active, joined)
+    addUser: `INSERT INTO users
+    (username, password, balance, permission, active, joined)
     VALUES
     (?, ?, ?, ?, ?, ?);`,
-    addScooter: `INSERT INTO scooters (battery, position, live, active, service, zone, lastUser)
+    addScooter: `INSERT INTO scooters
+    (battery, position, live, active, service, zone, lastUser)
     VALUES
     (?, ?, ?, ?, ?, ?, ?, ?)`,
     updateUser: `UPDATE users
@@ -72,14 +74,27 @@ const dbSQL = {
     active = FALSE
     WHERE
     id = ?;`,
-    getScooterPosition: `SELECT position from scooters
+    getScooterPosition: `SELECT position FROM scooters
     WHERE
     id = ?;`,
     setScooterPosition: `UPDATE scooters
     SET
     position = ?
     WHERE
-    id = ?;`
+    id = ?;`,
+    getRideHistory:`SELECT * FROM userHistory
+    WHERE
+    userID = ?`,
+    getLastRide:`SELECT * FROM userHistory
+    WHERE
+    userID = ?
+    ORDER BY
+    id DESC
+    LIMIT 1;`,
+    addRideToHistory:`INSERT INTO userHistory
+    (userID, scooterID, date, cost)
+    VALUES
+    (?, ?, datetime('now'), ?);`
 }
 
 module.exports = dbSQL;

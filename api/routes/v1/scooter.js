@@ -133,6 +133,8 @@ async function deActivateScooter(request, response) {
 
     try {
         db = database.getDB();
+        await database.run(db, dbSQL.addRideToHistory,
+            [userID, scooterID, payAmount])
         await database.run(db, dbSQL.removeUserBalance, [payAmount, userID]);
         await database.run(db, dbSQL.deActivateScooter, [scooterID]);
         data = `User ${userID} deactivated scooter ${scooterID} and payed ${payAmount}`;

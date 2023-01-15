@@ -122,15 +122,49 @@ async function getActiveUsers(request, response) {
     );
 }
 
-function userRideHistory(request, response) {
-    const data = [];
+async function userRideHistory(request, response) {
+    const userID = request.body.id;
+    let data;
+    let db;
+
+    try {
+        db = database.getDB();
+        data = await database.query(db, dbSQL.getRideHistory, [userID]);
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(200).json(
         { data: data, msg: "User ride history"}
     );
 }
 
-function userLastRide(request, response) {
-    const data = {};
+async function userLastRide(request, response) {
+    const userID = request.body.id;
+    let data;
+    let db;
+
+    try {
+        db = database.getDB();
+        data = await database.query(db, dbSQL.getLastRide, [userID]);
+    } catch (e) {
+        return response.status(500).json({
+            errors: {
+                status: 500,
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        database.closeDB(db);
+    }
     return response.status(200).json(
         { data: data, msg: "User most recent ride in history"}
     );

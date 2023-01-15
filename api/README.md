@@ -194,7 +194,27 @@ Returns list of user objects, Example of user object:
 }
 </pre>
 - /user/ridehistory - Route to get ride history. [GET]
-- /user/lastride - Route to get last ride. [GET]
+Requires id in the body. Returns list of userHistory object. Example:
+<pre>
+{
+    "id": 1,
+    "userID": 1,
+    "scooterID": 1,
+    "date": "2023-01-01 00:00:00",
+    "cost": 10
+}
+</pre>
+</pre>
+Requires id in the body. Returns userHistory object. Example:
+<pre>
+{
+    "id": 1,
+    "userID": 1,
+    "scooterID": 1,
+    "date": "2023-01-01 00:00:00",
+    "cost": 10
+}
+</pre>
 - /user/addbalance - Route to add balance to user. [PUT]\
 Requires id and balanceIncrease in the body. Example:
 <pre>
