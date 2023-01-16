@@ -216,8 +216,8 @@ Returns:
 Successful example:
 <pre>
 {
-   data: "0.0",
-   msg: "Scooter 1s position"
+    data: "User 1 deactivated scooter 1 and payed 100",
+    msg: "Scooter deactivated"
 }
 </pre>
 Failed example:
@@ -240,8 +240,8 @@ GET requires id in the body. Example:
 GET returns:
 <pre>
 {
-   data: "User 1 deactivated scooter 1 and payed 100",
-   msg: "Scooter deactivated"
+    data: "0.0",
+    msg: "Scooter 1s position"
 }
 </pre>
 Failed example:
@@ -424,7 +424,7 @@ Login error:
     message: "Incorrect password"
 }
 </pre>
-Datbase error:
+Database error:
 <pre>
 {
     errors: {
@@ -455,7 +455,7 @@ Returns list of user objects, Example of user object:
     msg: "All active users in system"
 }
 </pre>
-- /user/ridehistory - Route to get ride history. [GET]
+- /user/ridehistory - Route to get ride history. [GET]\
 Requires id in the body. Example:
 <pre>
 {
@@ -491,7 +491,7 @@ Failed example:
     }
 }
 </pre>
-- /user/lastride - Route to get last ride in user history. [GET]
+- /user/lastride - Route to get last ride in user history. [GET]\
 Requires id in the body. Example:
 <pre>
 {
