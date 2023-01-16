@@ -179,7 +179,7 @@ async function addUserBalance(request, response) {
     try {
         db = database.getDB();
         await database.run(db, dbSQL.addUserBalance, [balanceIncrease, userID]);
-        data = `User ${userID}s balance increased with ${balanceIncrease}.`;
+        data = `User ${userID}s balance increased with ${balanceIncrease}`;
     } catch (e) {
         return response.status(500).json({
             errors: {
@@ -205,7 +205,7 @@ async function removeUserBalance(request, response) {
     try {
         db = database.getDB();
         await database.run(db, dbSQL.removeUserBalance, [balanceDecrease, userID]);
-        data = `User ${userID}s balance decreased with ${balanceDecrease}.`;
+        data = `User ${userID}s balance decreased with ${balanceDecrease}`;
     } catch (e) {
         return response.status(500).json({
             errors: {

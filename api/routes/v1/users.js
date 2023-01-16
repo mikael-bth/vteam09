@@ -96,7 +96,7 @@ async function updateUser(request, response) {
         database.closeDB(db);
     }
     return response.status(201).json(
-        { data: data, msg: "User updated"}
+        { data: data, msg: "User updated in database"}
     );
 }
 
@@ -121,7 +121,7 @@ async function removeUser(request, response) {
         database.closeDB(db);
     }
     return response.status(201).json(
-        { data: data, msg: "User removed"}
+        { data: data, msg: "User removed from database"}
     );
 }
 
