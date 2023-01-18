@@ -1,4 +1,5 @@
 import time
+import random
 
 class Scooter:
     speed = 0
@@ -35,4 +36,7 @@ class Scooter:
             while self.live:
                 if self.speed > 0:
                     self.battery -= 5
+                    if (not self.service):
+                        serviceValue = random.randint(1, 100)
+                        self.service = True if serviceValue <= 5 else False
                     time.sleep(30)
