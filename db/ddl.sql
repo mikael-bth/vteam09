@@ -7,6 +7,6 @@ VALUES
 
 INSERT INTO scooters (battery, position, live, active, service, zone, lastUser)
 VALUES
-(80, '0.0', TRUE, FALSE, FALSE, 0, 0),
-(100, '0.0', TRUE, TRUE, FALSE, 0, 0),
-(10, '0.0', FALSE, FALSE, TRUE, 0, 0);
+(80, '56.16156,15.58655', TRUE, FALSE, FALSE, 0, 0),
+(100, '56.16156,15.58661', TRUE, TRUE, FALSE, 0, 0),
+(10, '56.16156,15.58665', FALSE, FALSE, TRUE, 0, 0);
