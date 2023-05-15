@@ -20,8 +20,7 @@ async function updateMap() {
 
 async function getScooters() {
     const response = await fetch("http://localhost:8080/v1/scooters");
-    const data = response.json();
-    return data;
+    return response.json();
 }
 
 async function setMarkers() {
