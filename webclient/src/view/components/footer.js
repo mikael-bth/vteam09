@@ -12,7 +12,7 @@ function Footer() {
                 <a href='https://github.com/mikael-bth/vteam09'><i className="pi pi-instagram"></i></a>
                 <a href='https://github.com/mikael-bth/vteam09'><i className="pi pi-twitter"></i></a>
                 <a href='https://github.com/mikael-bth/vteam09'><i className="pi pi-github"></i></a>
-                <p className='copyright'>2022 &copy; vteam09, All rights reserved.</p>
+                <p className='copyright'>2023 &copy; vteam09, All rights reserved.</p>
             </div>
         </footer></>
     );

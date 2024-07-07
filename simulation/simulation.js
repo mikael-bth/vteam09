@@ -1,20 +1,16 @@
-console.log("Script ready")
+let destinations = []
+let distance = {}
+let moveCount = {}
+var scooters
 
-let map;
-let markers = [];
-
-window.onload = function() {
-    setMarkers();
-    updateMap();
-}
-
-window.initMap = initMap;
-
-async function updateMap() {
+async function updateSimulation() {
     while (true) {
-        await new Promise(r => setTimeout(r, 5000));
-        updateMarkers();
-        console.log("map reloaded")
+        await new Promise(r => setTimeout(r, 2000));
+        scooters = await getScooters();
+        scooters = scooters.data;
+
+        createDestinations();
+        moveScooters();
     }
 }
 
@@ -23,72 +19,61 @@ async function getScooters() {
     return response.json();
 }
 
-async function setMarkers() {
-    let scooters = await getScooters();
-    scooters = scooters.data
-
-    scooters.forEach(scooter => {
-        const scooterPos = scooter.position.split(",");
-        const scooterLatLng = {lat: parseFloat(scooterPos[0]), lng: parseFloat(scooterPos[1])};
-        const scooterLive = scooter.live === 1 ? "Scooter is live" : "Scooter is not live";
-        const scooterActive = scooter.active === 1 ? "Scooter is active" : "Scooter is not active";
-        const scooterService = scooter.service === 1 ? "Scooter needs service" : "Scooter doesn't need service";
-        const marker = new google.maps.Marker({
-            position: scooterLatLng,
-            map: map,
-            name: scooter.id,
-            title: `Scooter ${scooter.id}`,
-            battery: `Battery: ${scooter.battery}`,
-            location: `Location: Lat ${scooterPos[0]}, Long ${scooterPos[1]}`,
-            live: scooterLive,
-            active: scooterActive,
-            service: scooterService
-        });
-      
-        marker.addListener('click', function() {
-            var infoWindow = new google.maps.InfoWindow({
-                content: `<h3>${this.title}</h3>
-                <p>${this.location}</p>
-                <p>${this.battery}</p>
-                <p>${this.live}</p>
-                <p>${this.active}</p>
-                <p>${this.service}</p>`
-            });
-        
-            infoWindow.open(map, this);
-        });
-        markers.push(marker)
+async function updateScooterPos(id, pos) {
+    let data = {
+        "id": id,
+        "position": pos
+    };
+    let response = await fetch("http://localhost:8080/v1/scooter/position", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
     });
+    return response.json();
 }
 
-async function updateMarkers() {
-    let scooters = await getScooters();
-    scooters = scooters.data
-    markers.forEach((marker, index) => {
-        scooterIndex = scooters.findIndex(scooter => scooter.id === marker.name)
-        if (scooterIndex === -1) {
-            marker.setMap(null);
-            markers.slice(index, 1)
-        } else {
-            const scooterPos = scooters[scooterIndex].position.split(",");
-            const scooterLatLng = {lat: parseFloat(scooterPos[0]), lng: parseFloat(scooterPos[1])};
-            const scooterLive = scooters[scooterIndex].live === 1 ? "Scooter is live" : "Scooter is not live";
-            const scooterActive = scooters[scooterIndex].active === 1 ? "Scooter is active" : "Scooter is not active";
-            const scooterService = scooters[scooterIndex].service === 1 ? "Scooter needs service" : "Scooter doesn't need service";
-            console.log(scooterLatLng)
-            marker.setPosition(scooterLatLng);
-            marker.location = `Location: Lat ${scooterPos[0]}, Long ${scooterPos[1]}`;
-            marker.battery = `Battery: ${scooters[scooterIndex].battery}`;
-            marker.live = scooterLive;
-            marker.active = scooterActive,
-            marker.service = scooterService
+function createDestinations() {
+    scooters.forEach(scooter => {
+        if (destinations.indexOf(scooter.id) == -1) {
+            const lat = 56.16 + (Math.random() / 1000);
+            const lng = 15.58 + (Math.random() / 1000);
+            
+            destinations.push(scooter.id)
+
+            const scooterPos = scooter.position.split(",");
+            const scooterLat = scooterPos[0];
+            const scooterLng = scooterPos[1];
+
+            const latDist = scooterLat - lat
+            const lngDist = scooterLng - lng
+
+            distance[scooter.id + "lat"] = latDist
+            distance[scooter.id + "lng"] = lngDist
+
+            moveCount[scooter.id] = 0
         }
     });
 }
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 56.16156, lng: 15.58661},
-        zoom: 12
+function moveScooters() {
+    scooters.forEach(async (scooter) => {
+        if (moveCount[scooter.id] <= 10) {
+            // Add if tick distance it biggen then current distansce to desition doi 
+            const scooterPos = scooter.position.split(",");
+            let scooterLat = parseFloat(scooterPos[0]);
+            let scooterLng = parseFloat(scooterPos[1]);
+
+            scooterLat += distance[scooter.id + "lat"] / 10;
+            scooterLng += distance[scooter.id + "lng"] / 10;
+            // Add else move rest of destination that is left to be in right position acording to db
+
+            console.log(await updateScooterPos(scooter.id, `${scooterLat},${scooterLng}`))
+
+            moveCount[scooter.id] = moveCount[scooter.id] + 1
+        } else {
+            destinations.splice(destinations.indexOf(scooter.id), 1);
+        }
     });
 }
